@@ -113,7 +113,7 @@ func main() {
 			fmt.Printf("x%d = %.2f\n", i+1, sol)
 		}
 	} else {
-		fmt.Println("Impossible de résoudre directement : matrice non carrée.")
+		generalSolution(matrice, m, n)
 	}
 }
 
@@ -153,4 +153,26 @@ func solution(matrice [][]float64, m int) []float64 {
 	}
 
 	return solution
+}
+
+// Afficher une solution générale pour un système sous-déterminé
+func generalSolution(matrice [][]float64, m, n int) {
+	vars := make([]string, n-1)
+	for i := range vars {
+		vars[i] = fmt.Sprintf("x%d", i+1)
+	}
+
+	fmt.Println("the solve general :")
+	for i := 0; i < m; i++ {
+		fmt.Printf("%s = %.2f", vars[i], matrice[i][n-1])
+		for j := i + 1; j < n-1; j++ {
+			fmt.Printf(" - %.2f*%s", matrice[i][j], vars[j])
+		}
+		fmt.Println()
+	}
+
+	// Les variables libres
+	for i := m; i < n-1; i++ {
+		fmt.Printf("%s is free.\n", vars[i])
+	}
 }

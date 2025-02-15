@@ -10,6 +10,9 @@ import (
 )
 
 // Task représente une tâche avec ses critères.
+// Creation de la strucure des taches
+//
+//	en golang on utilise les structures a la place des class
 type Task struct {
 	Name       string  `json:"Name"`
 	Urgency    float64 `json:"Urgency"`
@@ -26,13 +29,16 @@ type PriorityCalculator struct {
 }
 
 // CalculatePriority calcule la priorité pour une tâche donnée.
+// creation de la methode pour le calculatePriority
 func (pc PriorityCalculator) CalculatePriority(task *Task) {
 	task.Priority = (task.Urgency * pc.UrgencyWeight) +
 		(task.Importance * pc.ImportanceWeight) +
 		(task.Complexity * pc.ComplexityWeight)
 }
 
-// SortTasks trie les tâches en fonction de leur priorité.
+// trie les tâches en fonction de leur priorité.
+//
+//	Creation d'une methode de tri par priorité de traitement
 func (pc PriorityCalculator) SortTasks(tasks []*Task) {
 	// Calculer la priorité de chaque tâche
 	for _, task := range tasks {
@@ -77,12 +83,13 @@ func main() {
 	}
 
 	// Définir les pondérations
+	// en golang on doit initiliser une struture a l'appel
 	calculator := PriorityCalculator{
-		UrgencyWeight:    1,
-		ImportanceWeight: 2,
-		ComplexityWeight: 2,
+		UrgencyWeight:    2,
+		ImportanceWeight: 3,
+		ComplexityWeight: 4,
 	}
-
+	fmt.Println("juste presentatin des elements de la taches")
 	// Démarrer le chronométrage
 	start := time.Now()
 
@@ -91,6 +98,12 @@ func main() {
 
 	// Arrêter le chronométrage
 	elapsed := time.Since(start)
+
+	var t []*Task
+	fmt.Println("la presentation simple de la tache")
+	for _, val := range t {
+		fmt.Println("voice la tache", val)
+	}
 
 	// Afficher les tâches triées
 	fmt.Println("The task for priorite :")

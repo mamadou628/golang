@@ -19,7 +19,7 @@ func main() {
 		{Title: "Les Misérables", Author: "Victor Hugo", Year: 1862},
 		{Title: "Moby Dick", Author: "Herman Melville", Year: 1851},
 		{Title: "Don Quichotte", Author: "Miguel de Cervantes", Year: 1605},
-		// Ajoute autant de livres que tu veux ici
+		// on peut ajouter autant de livre que souhaité
 	}
 
 	// Ajout des livres à la bibliothèque
