@@ -9,10 +9,10 @@ const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 // Rotor struct
 type Rotor struct {
-	wiring      string
-	notch       byte
-	position    int
-	ringSetting int
+	wiring      string // Represente la cablage interne dur rotor ordre de connaixion de A a Z
+	notch       byte   // indique la postion ou le carctère qu'atteinte, provoque le passage dur rotor suivant
+	position    int    // la position actuelle du rotor
+	ringSetting int    // le réglage du disque de la bague qui permet d'ajuster le décalge fixe
 }
 
 // Plugboard struct
@@ -41,7 +41,7 @@ func (r Rotor) Rotate() bool {
 
 // Encode a character through the rotor
 func (r *Rotor) Encode(c byte, reverse bool) byte {
-	offset := r.position - r.ringSetting
+	offset := r.position - r.ringSetting // decalage offset
 	if offset < 0 {
 		offset += 26
 	}
@@ -70,22 +70,19 @@ func (p *Plugboard) Encode(c byte) byte {
 // Main function
 func main() {
 	// Example rotors and plugboard
-	rotor1 := NewRotor("AQWZSXEDCRFVBGTYHN?JUIKOLPM", 'Q')
-	rotor2 := NewRotor("MPLOIK?JUYHNBGTRFVCDEZSXWQA", 'L')
-	rotor3 := NewRotor("WQSXCDFVGBNHJ?KLMPOUIYTERZA", 'T')
+	rotor1 := NewRotor("AQWZSXEDCRFVBGTYHNJUIKOLPM", 'Q')
+	rotor2 := NewRotor("MPLOIKJUYHNBGTRFVCDEZSXWQA", 'L')
+	rotor3 := NewRotor("WQSXCDFVGBNHJKLMPOUIYTERZA", 'T')
 
 	plugboard := NewPlugboard(map[byte]byte{
-		'A': 'K',
+		'A': 'K', // ces letres seront trasformer par des lettre correspondant avant d'envoyer dans le rotor
 		'B': 'Z',
 		'C': 'W',
 		'D': 'N',
-		'a': 'l',
-		'k': 'c',
-		'h': 'i',
 	})
 
 	// Input message
-	message := "HELLO WORD"
+	message := "SALUT TOUT LE MONDE "
 	encoded := ""
 
 	for _, char := range message {

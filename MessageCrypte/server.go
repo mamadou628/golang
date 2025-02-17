@@ -29,6 +29,7 @@ func main() {
 	// Générer une paire de clés RSA
 
 	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
+	//privatekey, err := cle.generateRSAKeys()
 	gestionerreur(err)
 	publicKey := &privateKey.PublicKey
 	// Écrire la clé publique dans un fichier

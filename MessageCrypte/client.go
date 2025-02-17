@@ -32,7 +32,7 @@ func loadPrivateKeyFromFile(filePath string) (*rsa.PrivateKey, error) {
 
 	block, _ := pem.Decode(keyFile)
 	if block == nil || block.Type != "RSA PRIVATE KEY" {
-		return nil, fmt.Errorf("le fichier ne contient pas une clé privée valide")
+		return nil, fmt.Errorf("The file not have private key")
 	}
 
 	privateKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
@@ -110,11 +110,13 @@ func decryptmessage(encryptedMessage string) {
 	fmt.Print("Entrez le chemin de votre clé privée pour déchiffrer le message ou appuyez sur Entrée pour ignorer : ")
 	reader := bufio.NewReader(os.Stdin)
 	privateKeyPath, _ := reader.ReadString('\n')
+	// la fonction strings.TrimSpace retourne une chaine de caractere avec les spaces
 	privateKeyPath = strings.TrimSpace(privateKeyPath)
 
 	if privateKeyPath != "" {
 		// Charger la clé privée
 		fmt.Println("Chargement de la clé privée à partir de :", privateKeyPath)
+		// appel a la fonction qui lit le fichier
 		privateKey, err := loadPrivateKeyFromFile(privateKeyPath)
 		if gestionErreur(err) {
 			fmt.Println("Erreur lors du chargement de la clé privée.")

@@ -9,10 +9,12 @@ import (
 	"time"
 )
 
-// Task représente une tâche avec ses critères.
-// Creation de la strucure des taches
-//
-//	en golang on utilise les structures a la place des class
+/*
+	Task représente une tâche avec ses critères.
+
+Creation de la strucure des taches
+en golang on utilise les structures a la place des class
+*/
 type Task struct {
 	Name       string  `json:"Name"`
 	Urgency    float64 `json:"Urgency"`
@@ -36,9 +38,11 @@ func (pc PriorityCalculator) CalculatePriority(task *Task) {
 		(task.Complexity * pc.ComplexityWeight)
 }
 
-// trie les tâches en fonction de leur priorité.
-//
-//	Creation d'une methode de tri par priorité de traitement
+/*
+	trie les tâches en fonction de leur priorité.
+
+Creation d'une methode de tri par priorité de traitement
+*/
 func (pc PriorityCalculator) SortTasks(tasks []*Task) {
 	// Calculer la priorité de chaque tâche
 	for _, task := range tasks {
